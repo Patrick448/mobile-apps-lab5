@@ -24,15 +24,20 @@ class MainActivity : AppCompatActivity() {
 
         val textView = findViewById<TextView>(R.id.hello_tv)
         val editText = findViewById<TextView>(R.id.edit_text_1)
+        val button = findViewById<TextView>(R.id.go_second_activity_button)
         textView.text = "Hello, World!"
         editText?.setOnEditorActionListener() { v, actionId, event ->
             data = editText.text.toString()
             true
         }
+
+        button.setOnClickListener {
+            openSecondActivity(data ?: "Nothing")
+        }
     }
 
 
-    fun openSecondActivity() {
+    fun openSecondActivity(data: String) {
         val intent = Intent(this, SecondActivity::class.java)
         intent.putExtra("data", data)
         startActivity(intent)
